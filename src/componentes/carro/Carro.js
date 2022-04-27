@@ -1,5 +1,7 @@
 import {useState} from 'react'
 
+import styles from './assets/Carro.module.css'
+
 function Carro() {
 
     const [carro, setCarro] = useState({
@@ -38,28 +40,33 @@ function Carro() {
     }
 
     return(
-        <div>
-            <p>O Carro está {carro.ligado? "ligado" : "desligado"}</p>
-            <p>Velocidade: {carro.velocidade}</p>
+        <div className={styles.container}>
+            <div className={styles.painel}>
+                <p>O Carro está {carro.ligado? "ligado" : "desligado"}</p>
+                <p>Velocidade: {carro.velocidade}</p>
+            </div>
 
-            <input type="checkbox"
-                checked={carro.ligado}
-                onChange={(e) => {
-                    handleChangeLigado(e.target.checked)
-                }}
-            />
+            <div className={styles.operacoes}>
+                <input type="checkbox"
+                    checked={carro.ligado}
+                    onChange={(e) => {
+                        handleChangeLigado(e.target.checked)
+                    }}
+                />
 
-            <button onClick={() => 
-                carro.ligado ? handleChangeVelocidade() : console.log("Ligue o carro")}
-            >
-                Acelerar carro
-            </button>
+                <button onClick={() => 
+                    carro.ligado ? handleChangeVelocidade() : console.log("Ligue o carro")}
+                >
+                    Acelerar carro
+                </button>
 
-            <button onClick={() => 
-                carro.ligado && carro.velocidade >= 10 ? handleChangeVelocidadeFreio() : console.log("Ligue o carro")}
-            >
-                Freie o carro
-            </button>
+                <button onClick={() => 
+                    carro.ligado && carro.velocidade >= 10 ? handleChangeVelocidadeFreio() : console.log("Ligue o carro")}
+                >
+                    Freie o carro
+                </button>
+            </div>
+        
         </div>
     )
 }
